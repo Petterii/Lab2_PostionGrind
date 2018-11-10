@@ -1,0 +1,11 @@
+/Users/mrx/Projects/Lab2_postions/Lab2_postions/obj/Debug/netcoreapp2.1/Lab2_postions.csprojAssemblyReference.cache
+/Users/mrx/Projects/Lab2_postions/Lab2_postions/obj/Debug/netcoreapp2.1/Lab2_postions.csproj.CoreCompileInputs.cache
+/Users/mrx/Projects/Lab2_postions/Lab2_postions/obj/Debug/netcoreapp2.1/Lab2_postions.AssemblyInfoInputs.cache
+/Users/mrx/Projects/Lab2_postions/Lab2_postions/obj/Debug/netcoreapp2.1/Lab2_postions.AssemblyInfo.cs
+/Users/mrx/Projects/Lab2_postions/Lab2_postions/bin/Debug/netcoreapp2.1/Lab2_postions.deps.json
+/Users/mrx/Projects/Lab2_postions/Lab2_postions/bin/Debug/netcoreapp2.1/Lab2_postions.runtimeconfig.json
+/Users/mrx/Projects/Lab2_postions/Lab2_postions/bin/Debug/netcoreapp2.1/Lab2_postions.runtimeconfig.dev.json
+/Users/mrx/Projects/Lab2_postions/Lab2_postions/bin/Debug/netcoreapp2.1/Lab2_postions.dll
+/Users/mrx/Projects/Lab2_postions/Lab2_postions/bin/Debug/netcoreapp2.1/Lab2_postions.pdb
+/Users/mrx/Projects/Lab2_postions/Lab2_postions/obj/Debug/netcoreapp2.1/Lab2_postions.dll
+/Users/mrx/Projects/Lab2_postions/Lab2_postions/obj/Debug/netcoreapp2.1/Lab2_postions.pdb
