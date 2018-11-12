@@ -7,19 +7,25 @@ namespace Lab2_postions
     {
         private List<Position> positionList = new List<Position>(); 
         public List<Position> PositionList { get { return positionList; } set { positionList = value; } }
+        private bool synced;
 
         const string FILEPATH = "./WriteLines2.txt";
 
 
         public SortedPosList(){
+            synced = false;
+        }
+
+        public SortedPosList(string filepath){
+            synced = true;
             try
             {
-                System.IO.File.ReadAllLines(FILEPATH);
+                System.IO.File.ReadAllLines(filepath);
             }
             catch
             {
                 using (System.IO.StreamWriter file =
-                new System.IO.StreamWriter(FILEPATH))
+                       new System.IO.StreamWriter(filepath))
                 { };
             }
            }
@@ -30,7 +36,7 @@ namespace Lab2_postions
 
             for (int i = 0; i < PositionList.Count; i++)
             {
-                newInst.PositionList.Add(PositionList[i].Clone());
+                newInst.Add(PositionList[i].Clone());
             }
 
             return newInst;
@@ -55,7 +61,7 @@ namespace Lab2_postions
             for (int i = 0; i < PositionList.Count; i++)
             {
                 if (InCircle(position,radius, i))
-                    newInst.PositionList.Add(PositionList[i]);     
+                    newInst.Add(PositionList[i]);     
             }
             return newInst;
         }
@@ -93,7 +99,8 @@ namespace Lab2_postions
             if (PositionList.Count == 0)
             {
                 PositionList.Insert(0, pos);
-                SavePositionToFile(pos);
+                if (synced)
+                    SavePositionToFile(pos);
             }
             else{
 
@@ -103,14 +110,16 @@ namespace Lab2_postions
                     if (PositionList[i].Length() > pos.Length())
                     {
                         PositionList.Insert(i, pos);
-                        SavePositionToFile(pos);
+                        if(synced)
+                            SavePositionToFile(pos);
                         return;
                     }
 
                     if (PositionList.Count-1 == i)
                     {
                         PositionList.Insert(PositionList.Count, pos);
-                        SavePositionToFile(pos);
+                        if (synced)
+                            SavePositionToFile(pos);
                         return;
                     }
                 }
@@ -126,10 +135,10 @@ namespace Lab2_postions
             for (int i = 0; i < size; i++)
             {
                 if(i < p1.Count())
-                newList.PositionList.Add(p1.PositionList[i].Clone());
+                    newList.Add(p1.PositionList[i].Clone());
 
                 if(i < p2.Count())
-                newList.PositionList.Add(p2.PositionList[i].Clone());
+                newList.Add(p2.PositionList[i].Clone());
 
             }
             // operator stuff
@@ -217,7 +226,7 @@ namespace Lab2_postions
 
             for (int i = 0; i < lines.Length; i++)
             {
-                nList.PositionList.Add(StringToPosition(lines[i]));
+                nList.Add(StringToPosition(lines[i]));
             }
 
             return nList;

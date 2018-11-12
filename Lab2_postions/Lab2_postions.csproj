@@ -8,5 +8,6 @@
   <ItemGroup>
     <None Remove="WriteLinesDot.txt" />
     <None Remove="WriteLines2.txt" />
+    <None Remove="WriteLines2.txt" />
   </ItemGroup>
 </Project>

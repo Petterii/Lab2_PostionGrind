@@ -4,6 +4,8 @@ namespace Lab2_postions
 {
     class Program
     {
+        const string FILEPATH = "./WriteLines2.txt";
+
         protected static void Main(string[] args)
         {
 
@@ -14,8 +16,8 @@ namespace Lab2_postions
             Console.WriteLine(new Position(5, 3) < new Position(3, 10));
           
 
-            SortedPosList list1 = new SortedPosList();
-            SortedPosList list2 = new SortedPosList();
+            SortedPosList list1 = new SortedPosList(FILEPATH);
+            SortedPosList list2 = new SortedPosList(FILEPATH);
             list1.Add(new Position(3, 7));
             list1.Add(new Position(1, 4));
             list1.Add(new Position(2, 6));
@@ -37,7 +39,7 @@ namespace Lab2_postions
 
 
             Console.WriteLine((list2 - list1) + " : Minus \n");
-            SortedPosList circleList = new SortedPosList();
+            SortedPosList circleList = new SortedPosList(FILEPATH);
             circleList.Add(new Position(1, 1));
             circleList.Add(new Position(2, 2));
             circleList.Add(new Position(3, 3));
