@@ -38,8 +38,14 @@ namespace Lab2_postions
 
         public bool Remove(Position pos)
         {
-            PositionList.Remove(pos);
-            return true;
+            foreach (Position item in PositionList)
+            {
+                if (item.Equals(pos))
+                {     PositionList.Remove(item);
+                    return true;
+                }               
+            } 
+            return false;
         }
 
         public SortedPosList CircleContent(Position position, double radius)
