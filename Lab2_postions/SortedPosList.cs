@@ -3,11 +3,26 @@ using System.Collections.Generic;
 
 namespace Lab2_postions
 {
-    internal class SortedPosList
+    class SortedPosList
     {
         private List<Position> positionList = new List<Position>(); 
         public List<Position> PositionList { get { return positionList; } set { positionList = value; } }
 
+        const string FILEPATH = "./WriteLines2.txt";
+
+
+        public SortedPosList(){
+            try
+            {
+                System.IO.File.ReadAllLines(FILEPATH);
+            }
+            catch
+            {
+                using (System.IO.StreamWriter file =
+                new System.IO.StreamWriter(FILEPATH))
+                { };
+            }
+           }
 
         public SortedPosList Clone(){
             SortedPosList newInst = new SortedPosList();
@@ -34,7 +49,7 @@ namespace Lab2_postions
             for (int i = 0; i < PositionList.Count; i++)
             {
                 if (InCircle(position,radius, i))
-                    newInst.Add(PositionList[i]);     
+                    newInst.PositionList.Add(PositionList[i]);     
             }
             return newInst;
         }
@@ -58,6 +73,11 @@ namespace Lab2_postions
             return combineString;
         }
 
+        public static void PrintFile()
+        {
+
+        }
+
         public int Count(){
             return PositionList.Count;
         }
@@ -65,7 +85,10 @@ namespace Lab2_postions
 
         public void Add(Position pos){
             if (PositionList.Count == 0)
+            {
                 PositionList.Insert(0, pos);
+                SavePositionToFile(pos);
+            }
             else{
 
                 for (int i = 0; i < PositionList.Count; i++)
@@ -74,12 +97,14 @@ namespace Lab2_postions
                     if (PositionList[i].Length() > pos.Length())
                     {
                         PositionList.Insert(i, pos);
+                        SavePositionToFile(pos);
                         return;
                     }
 
                     if (PositionList.Count-1 == i)
                     {
                         PositionList.Insert(PositionList.Count, pos);
+                        SavePositionToFile(pos);
                         return;
                     }
                 }
@@ -95,10 +120,10 @@ namespace Lab2_postions
             for (int i = 0; i < size; i++)
             {
                 if(i < p1.Count())
-                newList.Add(p1.PositionList[i].Clone());
+                newList.PositionList.Add(p1.PositionList[i].Clone());
 
                 if(i < p2.Count())
-                newList.Add(p2.PositionList[i].Clone());
+                newList.PositionList.Add(p2.PositionList[i].Clone());
 
             }
             // operator stuff
@@ -132,6 +157,73 @@ namespace Lab2_postions
             return p1;
         }
 
+        public void WriteToFile(Position p){
+            SortedPosList readList = ReadFileToSortedList();
 
+            using (System.IO.StreamWriter file =
+                new System.IO.StreamWriter(FILEPATH))
+            {
+                string temp = ToString();
+
+                for (int i = 0; i < readList.Count(); i++)
+                {                 
+                    file.WriteLine(readList.PositionList[i].ToString());
+                }
+
+                for (int i = 0; i < PositionList.Count; i++)
+                {
+                    file.WriteLine(PositionList[i].ToString());
+
+                }
+
+            }
+
+     
+        }
+
+        public void SavePositionToFile(Position p)
+        {
+            SortedPosList readList = ReadFileToSortedList();
+
+            using (System.IO.StreamWriter file =
+                new System.IO.StreamWriter(FILEPATH))
+            {
+                string temp = ToString();
+
+                for (int i = 0; i < readList.Count(); i++)
+                {
+                    file.WriteLine(readList.PositionList[i].ToString());
+                }
+
+                file.WriteLine(p.ToString());
+
+
+            }
+
+
+        }
+
+        public SortedPosList ReadFileToSortedList(){
+    
+            string[] lines = System.IO.File.ReadAllLines(FILEPATH);
+
+            SortedPosList nList = new SortedPosList();
+
+            for (int i = 0; i < lines.Length; i++)
+            {
+                nList.PositionList.Add(StringToPosition(lines[i]));
+            }
+
+            return nList;
+        }
+
+        public Position StringToPosition(string pos){
+            string posR1 = pos.Replace("(",string.Empty);
+            string posR2 = posR1.Replace(")", string.Empty);
+            string[] twoPoints = posR2.Split(",");
+
+            Position position = new Position(int.Parse(twoPoints[0]),int.Parse(twoPoints[1]));
+            return position;
+        }
     }
 }
